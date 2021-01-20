@@ -39,6 +39,9 @@ export default class BlogSettings extends ExtensionPage {
     this.addSidebarNav = app.data.settings.blog_add_sidebar_nav
       ? app.data.settings.blog_add_sidebar_nav
       : true;
+    this.schedulerEnabled = app.data.settings.blog_scheduler_enabled
+      ? app.data.settings.blog_scheduler_enabled
+      : false;
   }
 
   content() {
@@ -153,6 +156,27 @@ export default class BlogSettings extends ExtensionPage {
                   <div className="helpText">
                     {app.translator.trans(
                       "v17development-flarum-blog.admin.settings.add_sidebar_nav_text"
+                    )}
+                  </div>,
+                ]
+              ),
+              Switch.component(
+                {
+                  state: this.schedulerEnabled == true,
+                  onchange: (val) => {
+                    this.schedulerEnabled = val;
+                    this.hasChanges = true;
+                  },
+                },
+                [
+                  <b>
+                    {app.translator.trans(
+                      "v17development-flarum-blog.admin.settings.scheduler_enable"
+                    )}
+                  </b>,
+                  <div className="helpText">
+                    {app.translator.trans(
+                      "v17development-flarum-blog.admin.settings.scheduler_enable_helper"
                     )}
                   </div>,
                 ]
@@ -323,6 +347,7 @@ export default class BlogSettings extends ExtensionPage {
       blog_allow_comments: this.allowComments,
       blog_category_hierarchy: this.addCategoryHierarchy,
       blog_filter_discussion_list: this.hideOnDiscussionList,
+      blog_scheduler_enabled: this.schedulerEnabled,
     })
       .then(() => {
         this.hasChanges = false;

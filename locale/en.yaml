@@ -30,6 +30,8 @@ v17development-flarum-blog:
       redirect_articles_text: "When enabled, this extension will redirect original discussion URLs to their blog URL."
       redirect_tags_label: "Redirect blog tags"
       redirect_tags_text: "When enabled, this extension redirects blog tag URLs to the blog category URL."
+      scheduler_enable: "Allow blog posts to be scheduled."
+      scheduler_enable_helper: "When turned on a new button appears in the composer, allowing for the poster to set a certain date and time for the blogpost to be published."
 
 
   forum:
